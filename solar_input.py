@@ -87,5 +87,5 @@ def write_space_objects_data_to_file(output_filename, space_objects):
 if __name__ == "__main__":
     print("This module is not for direct call!")
 
-"""а теперь тест по добавлению в main"""
+"""а теперь тест по добавлению в main, получится ли...."""
 
