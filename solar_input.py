@@ -6,7 +6,7 @@ from solar_objects import Star, Planet
 
 def read_space_objects_data_from_file(input_filename):
     """Cчитывает данные о космических объектах из файла, создаёт сами объекты
-    и вызывает создание их графических образов
+    и возвращает список объектов
 
     Параметры:
 
