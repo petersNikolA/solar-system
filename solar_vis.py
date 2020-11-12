@@ -7,8 +7,8 @@
 """
 
 header_font = "Arial-16"  # Шрифт в заголовке
-window_width = 800  # Ширина окна
-window_height = 800  # Высота окна
+window_width = 600  # Ширина окна
+window_height = 600  # Высота окна
 scale_factor = None
 """Масштабирование экранных координат по отношению к физическим.
 Тип: float

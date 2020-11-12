@@ -5,6 +5,43 @@ gravitational_constant = 6.67408E-11
 """Гравитационная постоянная Ньютона G"""
 
 
+def force(body1, body2):
+    """
+    Функция, вычисляющая силу гравитационного взаимодействия двух тел
+
+    Параметры:
+    **body1**, **body2** - тела, для которых вычисляется сила взаимодействия
+    между ними
+
+    Возвращает:
+    Fx и Fy - компоненты силы, с которой тело2 действует на тело1
+    """
+
+    r = ((body1.x - body2.x) ** 2 + (body1.y - body2.y) ** 2) ** 0.5
+
+    Fx = ((body2.x - body1.x) * gravitational_constant *
+          body1.m * body2.m / r ** 3)
+    Fy = ((body2.y - body1.y) * gravitational_constant *
+          body1.m * body2.m / r ** 3)
+    return Fx, Fy
+
+
+def potential(body, objects):
+    """Вычисляет гравитационный потенциал всех тел системы, кроме body,
+     в точке, где находится body
+
+     Параметры:
+     **body** - тело, **objects** - список всех тел системы
+     """
+    p = 0
+    for obj in objects:
+        if body == obj:
+            continue
+        r = ((body.x - obj.x) ** 2 + (body.y - obj.y) ** 2) ** 0.5
+        p -= gravitational_constant * obj.m / r
+    return p
+
+
 def calculate_force(body, space_objects):
     """Вычисляет силу, действующую на тело.
 
@@ -18,12 +55,9 @@ def calculate_force(body, space_objects):
     for obj in space_objects:
         if body == obj:
             continue  # тело не действует гравитационной силой на само себя!
-        r = ((body.x - obj.x) ** 2 + (body.y - obj.y) ** 2) ** 0.5
-
-        body.Fx += ((obj.x - body.x) * gravitational_constant *
-                    body.m * obj.m / r**3)
-        body.Fy += ((obj.y - body.y) * gravitational_constant *
-                    body.m * obj.m / r**3)
+        Fx, Fy = force(body, obj)
+        body.Fx += Fx
+        body.Fy += Fy
 
 
 def move_space_object(body, dt):
@@ -55,6 +89,7 @@ def recalculate_space_objects_positions(space_objects, dt):
         calculate_force(body, space_objects)
     for body in space_objects:
         move_space_object(body, dt)
+
 
 
 if __name__ == "__main__":
