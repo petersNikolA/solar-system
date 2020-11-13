@@ -101,7 +101,6 @@ def write_space_objects_data_to_file(output_filename, space_objects):
             print(out_file, obj.type, obj.r, obj.color, obj.m,
                   obj.x, obj.y, obj.Vx, obj.Vy)
 
+
 if __name__ == "__main__":
     print("This module is not for direct call!")
-
-
